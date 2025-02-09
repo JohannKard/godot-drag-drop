@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpwcru7n3cb3l"]
+
+[ext_resource type="PackedScene" uid="uid://bbpmswj4t73kr" path="res://drop_area.tscn" id="1_8t3su"]
+[ext_resource type="PackedScene" uid="uid://d4ieacjis6826" path="res://drop_test.tscn" id="2_ts1rb"]
+[ext_resource type="PackedScene" uid="uid://btv3cnka3trdj" path="res://mouse_zone.tscn" id="3_h5qg2"]
+
+[node name="TestWorld" type="Node2D"]
+
+[node name="DropArea" parent="." node_paths=PackedStringArray("overflow_area") instance=ExtResource("1_8t3su")]
+position = Vector2(86, 43)
+overflow_area = NodePath("../DropArea2")
+
+[node name="DropArea2" parent="." node_paths=PackedStringArray("overflow_area") instance=ExtResource("1_8t3su")]
+position = Vector2(92, 165)
+max_zones = 2
+gap = 50
+overflow_area = NodePath("../DropArea")
+
+[node name="MouseZone" parent="." instance=ExtResource("3_h5qg2")]
+position = Vector2(222, 347)
+
+[node name="DragHolder" type="Node2D" parent="."]
+position = Vector2(369, 317)
+
+[node name="DropTest" parent="DragHolder" instance=ExtResource("2_ts1rb")]
+position = Vector2(0, 3)
+
+[node name="DragHolder2" type="Node2D" parent="."]
+position = Vector2(596, 327)
+
+[node name="DropTest2" parent="DragHolder2" instance=ExtResource("2_ts1rb")]
+position = Vector2(10, 6)
+
+[node name="DragHolder3" type="Node2D" parent="."]
+position = Vector2(476, 417)
+
+[node name="DropTest2" parent="DragHolder3" instance=ExtResource("2_ts1rb")]
+position = Vector2(10, 6)
+
+[node name="DragHolder4" type="Node2D" parent="."]
+position = Vector2(647, 434)
+
+[node name="DropTest2" parent="DragHolder4" instance=ExtResource("2_ts1rb")]
+position = Vector2(9, 7)
+
+[node name="DragHolder5" type="Node2D" parent="."]
+position = Vector2(789, 327)
+
+[node name="DropTest2" parent="DragHolder5" instance=ExtResource("2_ts1rb")]
+position = Vector2(5, -1)
+
+[node name="DragHolder6" type="Node2D" parent="."]
+position = Vector2(879, 213)
+
+[node name="DropTest2" parent="DragHolder6" instance=ExtResource("2_ts1rb")]
+position = Vector2(7, 10)
