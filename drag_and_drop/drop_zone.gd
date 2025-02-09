@@ -3,11 +3,15 @@ extends Area2D
 ## This is a simple node that creates a rectangular [Area2D] according to the size it's instantiated
 ## at. It tracks [Draggable] items that are dropped on it, signaling it's parent [DropArea].
 
+## Emitted when a [Draggable] is added to [member drops].
 signal draggable_added(zone: DropZone, node: Node2D)
+## Emitted when a [Draggable] is removed from [member drops].
 signal draggable_removed(zone: DropZone, node: Node2D)
+## Emitted when a [Draggable] is hovered over this, calls up to parent [DropArea] to try and make
+## space for the [Draggable] to be dropped on this drop zone.
 signal try_shift_contents(zone: DropZone)
 
-@onready var drops: Node2D = $Drops
+@onready var drops: Node2D = $Drops ## An container for [Draggable] child nodes (should be restricted to 1).
 
 
 func _init(pos: Vector2 = Vector2.ZERO, size: Vector2 = Vector2(50, 50)) -> void:

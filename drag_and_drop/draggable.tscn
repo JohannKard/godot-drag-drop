@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bsvseyedmgvjr"]
 
-[ext_resource type="Script" path="res://draggable.gd" id="1_pgwuo"]
+[ext_resource type="Script" path="res://drag_and_drop/draggable.gd" id="1_pgwuo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6dqd"]
 

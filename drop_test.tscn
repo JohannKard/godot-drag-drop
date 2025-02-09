@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d4ieacjis6826"]
 
-[ext_resource type="PackedScene" uid="uid://bsvseyedmgvjr" path="res://draggable.tscn" id="1_x151i"]
+[ext_resource type="PackedScene" uid="uid://bsvseyedmgvjr" path="res://drag_and_drop/draggable.tscn" id="1_x151i"]
 
 [node name="DropTest" type="Node2D"]
 

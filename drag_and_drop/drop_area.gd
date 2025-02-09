@@ -5,12 +5,12 @@ extends Node2D
 ## It uses it's exported values to create the desired number of areas, at
 ## a desired size, and a desired distance between them.
 
-@export var max_zones := 5 ## The number of drop zones to instantiate.
-@export var zone_size := Vector2(50, 50) ## The size (px) of the collision area for a drop zone.
-@export var gap := 100 ## The gap (px) between each drop zone in the area.
+@export var max_zones := 5 ## The number of [DropZone]s to instantiate.
+@export var zone_size := Vector2(50, 50) ## The size (px) of the collision area for a [DropZone].
+@export var gap := 100 ## The gap (px) between each [DropZone] in the area.
 @export var overflow_area: DropArea ## A [DropArea] that shares [member zones] space when trying to add [Draggable]s.
 
-var zones: Array[DropZone] = [] : ## The array of drop zone nodes.
+var zones: Array[DropZone] = [] : ## The array of [DropZone] nodes.
 	get:
 		var z: Array[DropZone] = []
 		for child in zones_container.get_children():
@@ -60,7 +60,7 @@ func _on_try_shift_contents(zone: DropZone) -> void:
 			zone.get_draggable().set_parent_zone(overflow_zone.drops)
 
 
-## Returns index of the first [member zones] array without a [Draggable] left of idx.
+## Returns index of the first [member zones] array without a [Draggable] left of [param idx].
 func _find_left_space(idx: int) -> int:
 	for i in range(idx - 1, -1, -1): # Use -1 as bottom threshold because an array is 0-based
 		if zones[i].can_drop():
@@ -68,7 +68,7 @@ func _find_left_space(idx: int) -> int:
 	return -1
 
 
-## Returns index of the first [member zones] array without a [Draggable] right of idx.
+## Returns index of the first [member zones] array without a [Draggable] right of [param idx].
 func _find_right_space(idx: int) -> int:
 	for i in range(idx + 1, zones.size()):
 		if zones[i].can_drop():
@@ -76,14 +76,14 @@ func _find_right_space(idx: int) -> int:
 	return -1
 
 
-## Shifts [Draggable] of each [DropZone] in [member zones] between left_idx and idx to the left.
+## Shifts [Draggable] of each [DropZone] in [member zones] between [param left_idx] and [param idx] to the left.
 func _shift_left(idx: int, left_idx: int) -> void:
 	for i in range(left_idx + 1, idx + 1):
 		zones[i].remove_draggable()
 		zones[i - 1].add_draggable(zones[i].get_draggable())
 
 
-## Shifts [Draggable] of each [DropZone] in [member zones] between idx and right_idx to the right.
+## Shifts [Draggable] of each [DropZone] in [member zones] between [param idx] and [param right_idx] to the right.
 func _shift_right(idx: int, right_idx: int) -> void:
 	for i in range(right_idx - 1, idx - 1, -1):
 		zones[i].remove_draggable()
