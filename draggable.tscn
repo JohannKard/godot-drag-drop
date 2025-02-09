@@ -9,3 +9,4 @@ script = ExtResource("1_pgwuo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_o6dqd")
+debug_color = Color(0.994868, 0, 0.215019, 0.42)

@@ -1,6 +1,6 @@
 class_name DropZone
 extends Area2D
-## This is a simple node that creates a rectangular area2D according to the size it's instantiated
+## This is a simple node that creates a rectangular [Area2D] according to the size it's instantiated
 ## at. It tracks [Draggable] items that are dropped on it, signaling it's parent [DropArea].
 
 signal draggable_added(zone: DropZone, node: Node2D)
@@ -16,6 +16,7 @@ func _init(pos: Vector2 = Vector2.ZERO, size: Vector2 = Vector2(50, 50)) -> void
 	col_shape.shape = RectangleShape2D.new()
 	col_shape.shape.size = size
 	self.add_child(col_shape)
+	## Add a node to act as a container for [Draggable]s
 	var drop_node := Node2D.new()
 	drop_node.name = "Drops"
 	self.add_child(drop_node)

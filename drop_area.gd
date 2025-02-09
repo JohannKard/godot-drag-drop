@@ -8,7 +8,7 @@ extends Node2D
 @export var max_zones := 5 ## The number of drop zones to instantiate.
 @export var zone_size := Vector2(50, 50) ## The size (px) of the collision area for a drop zone.
 @export var gap := 100 ## The gap (px) between each drop zone in the area.
-@export var overflow_area: DropArea
+@export var overflow_area: DropArea ## A [DropArea] that shares [member zones] space when trying to add [Draggable]s.
 
 var zones: Array[DropZone] = [] : ## The array of drop zone nodes.
 	get:
@@ -90,11 +90,11 @@ func _shift_right(idx: int, right_idx: int) -> void:
 		zones[i + 1].add_draggable(zones[i].get_draggable())
 
 
+## Signal called when a [Draggable] is added to a child [DropZone]
 func _on_zone_draggable_added(_zone: DropZone, _node: Node2D) -> void:
-	print("added")
 	pass
 
 
+## Signal called when a [Draggable] is removed from a child [DropZone]
 func _on_zone_draggable_removed(_zone: DropZone, _node: Node2D) -> void:
-	print("removed")
 	pass

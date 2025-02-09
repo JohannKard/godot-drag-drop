@@ -20,37 +20,43 @@ overflow_area = NodePath("../DropArea")
 position = Vector2(222, 347)
 
 [node name="DragHolder" type="Node2D" parent="."]
-position = Vector2(369, 317)
+position = Vector2(199, 449)
+metadata/_edit_group_ = true
 
 [node name="DropTest" parent="DragHolder" instance=ExtResource("2_ts1rb")]
 position = Vector2(0, 3)
 
 [node name="DragHolder2" type="Node2D" parent="."]
-position = Vector2(596, 327)
+position = Vector2(356, 451)
+metadata/_edit_group_ = true
 
 [node name="DropTest2" parent="DragHolder2" instance=ExtResource("2_ts1rb")]
 position = Vector2(10, 6)
 
 [node name="DragHolder3" type="Node2D" parent="."]
-position = Vector2(476, 417)
+position = Vector2(278, 450)
+metadata/_edit_group_ = true
 
 [node name="DropTest2" parent="DragHolder3" instance=ExtResource("2_ts1rb")]
 position = Vector2(10, 6)
 
 [node name="DragHolder4" type="Node2D" parent="."]
-position = Vector2(647, 434)
+position = Vector2(425, 451)
+metadata/_edit_group_ = true
 
 [node name="DropTest2" parent="DragHolder4" instance=ExtResource("2_ts1rb")]
 position = Vector2(9, 7)
 
 [node name="DragHolder5" type="Node2D" parent="."]
-position = Vector2(789, 327)
+position = Vector2(497, 460)
+metadata/_edit_group_ = true
 
 [node name="DropTest2" parent="DragHolder5" instance=ExtResource("2_ts1rb")]
 position = Vector2(5, -1)
 
 [node name="DragHolder6" type="Node2D" parent="."]
-position = Vector2(879, 213)
+position = Vector2(552, 450)
+metadata/_edit_group_ = true
 
 [node name="DropTest2" parent="DragHolder6" instance=ExtResource("2_ts1rb")]
 position = Vector2(7, 10)
