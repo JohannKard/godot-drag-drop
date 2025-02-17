@@ -9,12 +9,14 @@ signal draggable_added(zone: DropZone, node: Node2D)
 signal draggable_removed(zone: DropZone, node: Node2D)
 ## Emitted when a [Draggable] is hovered over this, calls up to parent [DropArea] to try and make
 ## space for the [Draggable] to be dropped on this drop zone.
-signal try_shift_contents(zone: DropZone)
+signal try_shift_contents(zone: DropZone, draggable: Draggable)
 
-@onready var drops: Node2D = $Drops ## An container for [Draggable] child nodes (should be restricted to 1).
+var drop_type := Consts.DropType.NONE ## The type of [Draggable]s allowed to be dropped in the zone.
+var drops: Node2D ## An container for [Draggable] child nodes (should be restricted to 1).
 
 
-func _init(pos: Vector2 = Vector2.ZERO, size: Vector2 = Vector2(50, 50)) -> void:
+func _init(pos: Vector2 = Vector2.ZERO, size: Vector2 = Vector2(50, 50),
+						type: Consts.DropType = Consts.DropType.NONE) -> void:
 	global_position = pos
 	var col_shape := CollisionShape2D.new()
 	col_shape.shape = RectangleShape2D.new()
@@ -24,18 +26,22 @@ func _init(pos: Vector2 = Vector2.ZERO, size: Vector2 = Vector2(50, 50)) -> void
 	var drop_node := Node2D.new()
 	drop_node.name = "Drops"
 	self.add_child(drop_node)
-	print(self, global_position)
+	drops = drop_node
+	drop_type = type
 
 
 ## Determines if a [Draggable] can be dropped in this drop zone.
-func can_drop(_node: Node2D = null) -> bool:
-	return drops.get_child_count() == 0
+func can_drop(draggable: Draggable) -> bool:
+	var is_type := true
+	if draggable != null:
+		is_type = draggable.drop_type == drop_type
+	return drops.get_child_count() == 0 and is_type
 
 
 ## Emits a signal to try getting the [DropArea] to shift contents.
-func check_for_space() -> void:
-	if not can_drop():
-		try_shift_contents.emit(self)
+func check_for_space(draggable: Draggable) -> void:
+	if not can_drop(draggable):
+		try_shift_contents.emit(self, draggable)
 
 
 ## Retrieves the node stored as the dropped content (The parent of a [Draggable]).

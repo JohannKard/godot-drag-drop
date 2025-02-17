@@ -5,6 +5,8 @@ extends Area2D
 
 ## Sets the speed that this will move towards it's [member target_pos].
 @export var lerp_speed := 0.3
+## Set this to enforce type restrictions on what [DropZone]s this can be dropped on.
+@export var drop_type := Consts.DropType.NONE
 
 ## Set this to true to have the draggable follow it's grandparent [member parent_zone].
 var is_following := false
