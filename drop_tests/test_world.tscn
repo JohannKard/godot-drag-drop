@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpwcru7n3cb3l"]
+[gd_scene load_steps=5 format=3 uid="uid://bpwcru7n3cb3l"]
 
+[ext_resource type="Script" path="res://drop_tests/test_world.gd" id="1_jo0xu"]
 [ext_resource type="PackedScene" uid="uid://bbpmswj4t73kr" path="res://drag_and_drop/drop_area.tscn" id="1_ti6d1"]
 [ext_resource type="PackedScene" uid="uid://btv3cnka3trdj" path="res://drag_and_drop/mouse_zone.tscn" id="2_uls1p"]
 [ext_resource type="PackedScene" uid="uid://d4ieacjis6826" path="res://drop_tests/drop_test.tscn" id="3_4pveg"]
 
 [node name="TestWorld" type="Node2D"]
+script = ExtResource("1_jo0xu")
 
 [node name="DropArea" parent="." node_paths=PackedStringArray("overflow_area") instance=ExtResource("1_ti6d1")]
 position = Vector2(86, 43)
@@ -60,3 +62,12 @@ metadata/_edit_group_ = true
 
 [node name="DropTest2" parent="DragHolder6" instance=ExtResource("3_4pveg")]
 position = Vector2(7, 10)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 526.0
+offset_top = 336.0
+offset_right = 622.0
+offset_bottom = 366.0
+text = "Print contents"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

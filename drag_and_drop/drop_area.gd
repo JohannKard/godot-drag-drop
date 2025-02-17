@@ -38,6 +38,17 @@ func get_available_space_zone(draggable: Draggable) -> DropZone:
 	return null
 
 
+## Gets all child [DropZone]'s contents as an Array of [Draggable]s.
+## Content order is determined by node order in the tree.
+func get_contents() -> Array[Draggable]:
+	var contents: Array[Draggable] = []
+	for zone in zones:
+		var draggable = zone.get_draggable()
+		if draggable != null:
+			contents.push_back(draggable)
+	return contents
+
+
 ## Tries to shift contents between [member zones] to make space for a [Draggable] to be dropped.
 ## If [member overflow_area] is available, will also use that space when moving contents.
 func _on_try_shift_contents(zone: DropZone, draggable: Draggable) -> void:
