@@ -38,14 +38,24 @@ func get_available_space_zone(draggable: Draggable) -> DropZone:
 	return null
 
 
-## Gets all child [DropZone]'s contents as an Array of [Draggable]s.
+## Gets all child [DropZone]'s contents as an Array of [Node2D]s.
 ## Content order is determined by node order in the tree.
-func get_contents() -> Array[Draggable]:
-	var contents: Array[Draggable] = []
+func get_contents() -> Array[Node2D]:
+	var contents: Array[Node2D] = []
 	for zone in zones:
-		var draggable = zone.get_draggable()
-		if draggable != null:
-			contents.push_back(draggable)
+		var node = zone.get_dropped_node()
+		if node != null:
+			contents.push_back(node)
+	return contents
+
+
+## Gets all child [DropZone]'s contents as an Array of [Node2D]s, does not filter null values.
+## Content order is determined by node order in the tree.
+func get_contents_raw() -> Array[Node2D]:
+	var contents: Array[Node2D] = []
+	for zone in zones:
+		var node = zone.get_dropped_node()
+		contents.push_back(node)
 	return contents
 
 
